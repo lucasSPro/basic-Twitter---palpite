@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const routes = require('./routes');
+
 const app = express();
 
 mongoose.connect(
@@ -10,8 +12,7 @@ mongoose.connect(
   },
 );
 
-
-app.get('/', (req, res) => res.send('hello world'));
+app.use(routes);
 
 app.listen(3000, () => {
   console.log('Server starded');
