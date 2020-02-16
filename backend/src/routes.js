@@ -2,9 +2,9 @@ const express = require('express');
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-  const frase = 'Hello palpiteiro';
-  return res.send(frase);
-});
+const PalpiteController = require('./controllers/palpiteController');
+
+routes.get('/palpite', PalpiteController.index);
+routes.post('/palpite', PalpiteController.store);
 
 module.exports = routes;
