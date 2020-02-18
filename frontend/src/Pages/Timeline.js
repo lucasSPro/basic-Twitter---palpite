@@ -4,6 +4,8 @@ import api from '../services/api';
 import palpiteiroLogo from '../palpite.svg';
 import './Timeline.css';
 
+import Palpite from '../Compoment/Palpite';
+
 export default class Pages extends Component {
   state = {
     palpites: [],
@@ -40,7 +42,7 @@ export default class Pages extends Component {
             onKeyDown={this.handleNewPalpite}
             placeholder='What is going on'/>
         </form>
-        {this.state.palpites.map(palpite => <h1>{ palpite.content }</h1>)}
+        {this.state.palpites.map(palpite => <Palpite key={palpite._id} palpites={palpite}/>)}
       </div>
     );
   }

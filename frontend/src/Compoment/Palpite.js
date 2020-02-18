@@ -4,6 +4,6 @@ import './Palpite.css';
 
 export default class Palpite extends Component {
   render() {
-    return <div />;
+  return <h1>{ this.props.palpites.author}</h1>;
   }
 }
