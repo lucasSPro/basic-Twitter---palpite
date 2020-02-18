@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 
-import './Palpite.css';
+import like from '../like.svg';
+import './Palpite.css'
 
 export default class Palpite extends Component {
   render() {
-  return <h1>{ this.props.palpites.author}</h1>;
+    const { palpites } = this.props;
+
+    return(
+      <li className="palpite">
+        <strong> {palpites.author} </strong>
+        <p> {palpites.content} </p>
+        <button type='button'>
+          <img src={like} alt='Like' />
+          {palpites.likes}
+        </button>
+      </li>
+    );
   }
 }

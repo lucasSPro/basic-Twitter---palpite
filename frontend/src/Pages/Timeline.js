@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import api from '../services/api';
 
 import palpiteiroLogo from '../palpite.svg';
-import './Timeline.css';
+import '../Pages/Timeline.css';
 
 import Palpite from '../Compoment/Palpite';
 
@@ -32,7 +32,7 @@ export default class Pages extends Component {
   }
   render() {
     return(
-      <div className='timeline-wrapper'>
+      <div className="timeline-wrapper">
         <img height={25} src={palpiteiroLogo} alt='Palpiteiro' />
         
         <form>
@@ -42,7 +42,9 @@ export default class Pages extends Component {
             onKeyDown={this.handleNewPalpite}
             placeholder='What is going on'/>
         </form>
+        <ul className="palpite-list">
         {this.state.palpites.map(palpite => <Palpite key={palpite._id} palpites={palpite}/>)}
+        </ul>
       </div>
     );
   }
