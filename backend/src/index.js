@@ -6,6 +6,9 @@ const env = require('./env');
 
 const app = express();
 
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 mongoose.connect(
   `mongodb+srv://goweek:${env.password}@cluster0-ikt19.mongodb.net/test?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -13,8 +16,9 @@ mongoose.connect(
   },
 );
 
-// mongodb+srv://goweek:<password>@cluster0-ikt19.mongodb.net/test?retryWrites=true&w=majority
-
+app.use((req, res) => {
+  req.io = io;
+});
 app.use(express.json());
 app.use(routes);
 
