@@ -6,8 +6,15 @@ import './Timeline.css';
 
 export default class Pages extends Component {
   state = {
+    palpites: [],
     newPalpite: '',
   }
+  async componentDidMount(){
+    const respose = await api.get('palpite');
+
+    this.setState({ palpites: respose.data})
+  }
+
   handleInputChange = e => {
     this.setState({ newPalpite: e.target.value});
   }
@@ -18,6 +25,8 @@ export default class Pages extends Component {
     const author = localStorage.getItem('@palpite:username');
 
     await api.post('palpite', {content, author});
+
+    this.setState({newPalpite: ''});
   }
   render() {
     return(
@@ -31,7 +40,7 @@ export default class Pages extends Component {
             onKeyDown={this.handleNewPalpite}
             placeholder='What is going on'/>
         </form>
-
+        {this.state.palpites.map(palpite => <h1>{ palpite.content }</h1>)}
       </div>
     );
   }

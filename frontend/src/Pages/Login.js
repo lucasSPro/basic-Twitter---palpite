@@ -6,12 +6,10 @@ import './Login.css';
 
 
 export default class Pages extends Component {
-  
-    // eslint-disable-next-line 
     state = {
       username: '',
     };
-    // eslint-disable-next-line no-undef
+    
     handleSubmit = e => {
       e.preventDefault();
 
