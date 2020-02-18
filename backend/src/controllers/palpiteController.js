@@ -9,7 +9,7 @@ module.exports = {
 
   async store(req, res) {
     const palpite = await Palpite.create(req.body);
-
+    req.io.emit('palpite', palpite);
     return res.json(palpite);
   },
 };

@@ -8,6 +8,8 @@ module.exports = {
 
     await palpite.save();
 
+    req.io.emit('repalpite', palpite);
+
     return res.json(palpite);
   },
 };
