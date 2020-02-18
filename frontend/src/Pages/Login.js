@@ -1,27 +1,46 @@
+
 import React, { Component } from 'react';
 
-import palpiteiroLogo from '../twitter.svg';
+import palpiteiroLogo from '../palpite.svg';
 import './Login.css';
 
 
 export default class Pages extends Component {
-  render() {
+  
     // eslint-disable-next-line 
-    this.state = {
+    state = {
       username: '',
     };
-    return (
-      <div className='login-wrapper'>
-        <img src={palpiteiroLogo} alt='palpiteiro' />
-        <form>
-        <input 
-          value={this.state.username}
-          placeholder='Nome de usuário'
-        />
-        <button type='submit'>Entrar</button>
-        </form>
+    // eslint-disable-next-line no-undef
+    handleSubmit = e => {
+      e.preventDefault();
 
-      </div>
-    )
+      const { username } = this.state;
+
+      if (!username.length) return;
+
+      localStorage.setItem('@palpite:username', username);
+
+      this.props.history.push('/timeline');
+    }
+    // eslint-disable-next-line no-undef
+    handleInputChange = e =>{
+      this.setState({ username: e.target.value })
+    }
+    render() {
+      return (
+        <div className='login-wrapper'>
+          <img src={palpiteiroLogo} alt='palpiteiro' />
+          <form onSubmit={this.handleSubmit}>
+            <input 
+              value={this.state.username}
+              onChange={this.handleInputChange}
+              placeholder='Nome de usuário'
+            />
+          <button type='submit'>Entrar</button>
+          </form>
+
+        </div>
+      )
   }
 }
