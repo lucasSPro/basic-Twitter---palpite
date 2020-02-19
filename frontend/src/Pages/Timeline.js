@@ -25,7 +25,9 @@ export default class Pages extends Component {
       this.setState({ palpites: [ data, ...this.state.palpites] });
     });
     io.on('like', data =>{
-      console.log(data);
+      this.setState({palpites: this.state.palpites.map(palpite =>
+        palpite._id === data._id ? data : palpite
+        )});
     });
   }
 
@@ -45,7 +47,7 @@ export default class Pages extends Component {
   render() {
     return(
       <div className="timeline-wrapper">
-        <img height={25} src={palpiteiroLogo} alt='Palpiteiro' />
+        <img height={80} src={palpiteiroLogo} alt='Palpiteiro' />
         
         <form>
           <textarea

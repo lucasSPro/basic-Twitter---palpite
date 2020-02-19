@@ -1,33 +1,44 @@
 .palpite {
   padding: 20px 20px 0;
   margin: 20px 0 0;
+  background-color: rgb(255, 255, 255) ;
   border-top: 1px solid #eee;
+  border-radius: 8px;
+ 
+}
+.palpite strong {
+  color: #333;
 }
 
 .palpite:first-child {
-  margin-top: 0;
-  padding-top: 0;
+  margin-top: 15;
+  padding-top: 20;
   border: 0;
 }
 
 .palpite p {
   margin: 15px 0;
+  padding: 15px;
+  color: #eee;
   font-size: 14px;
   line-height: 20px;
+  background-color: #6A2894;
+  border-radius: 8px;
 }
 
 .palpite button {
   border: 0;
-  background: transparent;
+  background:transparent;
 
   display: flex;
   align-items: center;
-  color: #697882;
+  color: #333333;
   cursor: pointer;
 }
 
 .palpite button img {
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .palpite button:hover {
