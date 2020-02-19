@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../services/api';
+import socket from 'socket.io-client';
 
 import palpiteiroLogo from '../palpite.svg';
 import '../Pages/Timeline.css';
@@ -12,9 +13,20 @@ export default class Pages extends Component {
     newPalpite: '',
   }
   async componentDidMount(){
+    this.subscribeToEvents();
     const respose = await api.get('palpite');
 
     this.setState({ palpites: respose.data})
+  }
+  subscribeToEvents = () => {
+    const io = socket('http://localhost:3000');
+
+    io.on('palpite', data =>{
+      this.setState({ palpites: [ data, ...this.state.palpites] });
+    });
+    io.on('like', data =>{
+      console.log(data);
+    });
   }
 
   handleInputChange = e => {
