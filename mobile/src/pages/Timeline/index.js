@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 
-import {View} from 'react-native';
-
-// import { Container } from './styles';
+import {View, StyleSheet} from 'react-native';
 
 export default class Timeline extends Component {
   render() {
-    return <View />;
+    return <View style={styles.container} />;
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#6A2894',
+  },
+});

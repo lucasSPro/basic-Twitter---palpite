@@ -17,6 +17,12 @@ export default class index extends Component {
   state = {
     username: '',
   };
+  async componentDidMount() {
+    const username = await AsyncStorage.getItem('@AppPalpite:username');
+    if (username) {
+      this.props.navigation.navigate('Timeline');
+    }
+  }
   handlerInputChange = username => {
     this.setState({username});
   };
@@ -41,9 +47,9 @@ export default class index extends Component {
           <TextInput
             style={styles.input}
             placeholder="Digite o nome de usuário"
-            returnKeyType="send"
             onSubmitEditing={this.handlerLogin}
             onChangeText={this.handlerInputChange}
+            returnKeyType="send"
           />
           <TouchableOpacity onPress={this.handlerLogin} style={styles.button}>
             <Text style={styles.buttonText}>Entrar</Text>
