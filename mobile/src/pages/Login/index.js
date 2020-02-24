@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  AsyncStorage,
 } from 'react-native';
 
 export default class index extends Component {
@@ -20,11 +21,14 @@ export default class index extends Component {
     this.setState({username});
   };
 
-  handlerLogin = () => {
+  handlerLogin = async () => {
     const {username} = this.state;
     if (!username.length) {
       return;
     }
+    await AsyncStorage.setItem('@AppPalpite:username', username);
+
+    this.props.navigation.navigate('Timeline');
   };
 
   render() {
