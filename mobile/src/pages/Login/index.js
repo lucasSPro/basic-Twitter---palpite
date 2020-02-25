@@ -20,7 +20,7 @@ export default class index extends Component {
   async componentDidMount() {
     const username = await AsyncStorage.getItem('@AppPalpite:username');
     if (username) {
-      this.props.navigation.navigate('Timeline');
+      this.props.navigation.navigate('App');
     }
   }
   handlerInputChange = username => {
@@ -34,7 +34,7 @@ export default class index extends Component {
     }
     await AsyncStorage.setItem('@AppPalpite:username', username);
 
-    this.props.navigation.navigate('Timeline');
+    this.props.navigation.navigate('App');
   };
 
   render() {

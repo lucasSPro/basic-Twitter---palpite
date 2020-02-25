@@ -14,3 +14,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#6A2894',
   },
 });
+
+// eslint-disable-next-line no-undef
+Main.navigationOptions = {
+  title: 'Timeline',
+};

@@ -1,12 +1,28 @@
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
+import 'react-native-gesture-handler';
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
 
 const Routes = createAppContainer(
   createSwitchNavigator({
     Login,
-    Timeline,
+    App: createStackNavigator(
+      {
+        Timeline,
+      },
+      {
+        headerLayoutPreset: 'center',
+        headerBackTitleVisible: false,
+        defaultNavigationOptions: {
+          headerStyle: {
+            backgroundColor: '#6A2894',
+          },
+          headerTintColor: '#fff',
+        },
+      },
+    ),
   }),
 );
 
