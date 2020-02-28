@@ -7,10 +7,10 @@ import Palpite from '../../components/Palpite';
 import Icon from 'react-native-vector-icons/Entypo';
 
 export default class Timeline extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: 'Timeline',
     headerRight: (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={() => navigation.navigate('New')}>
         <Icon
           // eslint-disable-next-line react-native/no-inline-styles
           style={{marginRight: 20}}
@@ -20,7 +20,7 @@ export default class Timeline extends Component {
         />
       </TouchableOpacity>
     ),
-  };
+  });
 
   state = {
     palpites: [],
