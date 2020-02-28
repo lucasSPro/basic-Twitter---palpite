@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
+import api from '../services/api';
 
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class Palpite extends Component {
+  handleLike = () => {
+    const {_id} = this.props.palpite;
+    api.post(`likes/${_id}`);
+  };
+
   render() {
     const {palpite} = this.props;
 
@@ -12,7 +18,7 @@ export default class Palpite extends Component {
         <Text style={styles.author}>{palpite.author}</Text>
         <Text style={styles.content}>{palpite.content}</Text>
 
-        <TouchableOpacity onPress={() => {}} style={styles.likeButton}>
+        <TouchableOpacity onPress={this.handleLike} style={styles.likeButton}>
           <Icon name="ios-heart-empty" size={20} color="#999" />
           <Text style={styles.likeText}>{palpite.likes}</Text>
         </TouchableOpacity>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import api from '../../services/api';
 
 import {
   View,
@@ -25,6 +26,20 @@ export default class New extends Component {
     this.props.navigation.pop();
   };
 
+  handlePalpite = async () => {
+    const content = this.state.newPalpite;
+
+    const author = await AsyncStorage.getItem('@AppPalpite:username');
+
+    await api.post('palpite', {author, content});
+
+    this.goBack();
+  };
+
+  handleInputChange = newPalpite => {
+    this.setState({newPalpite});
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -33,10 +48,21 @@ export default class New extends Component {
             <Icon name="close" color="#6A2894" size={24} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <TouchableOpacity onPress={this.handlePalpite} style={styles.button}>
             <Text style={styles.buttonText}>Palpitar</Text>
           </TouchableOpacity>
         </View>
+
+        <TextInput
+          style={styles.input}
+          multiline
+          placeholder="What is wrong!"
+          placeholserTextColor="#6A2894"
+          value={this.state.newPalpite}
+          onChangeText={this.handleInputChange}
+          returnKeyType="send"
+          onSubmitEditing={this.handlePalpite}
+        />
       </SafeAreaView>
     );
   }
