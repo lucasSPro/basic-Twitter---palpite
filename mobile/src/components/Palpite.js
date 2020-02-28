@@ -19,6 +19,7 @@ export default class Palpite extends Component {
         <Text style={styles.content}>{palpite.content}</Text>
 
         <TouchableOpacity onPress={this.handleLike} style={styles.likeButton}>
+          {/* <Icon name="ios-heart-empty" size={20} color="#999" /> */}
           <Icon name="ios-heart-empty" size={20} color="#999" />
           <Text style={styles.likeText}>{palpite.likes}</Text>
         </TouchableOpacity>

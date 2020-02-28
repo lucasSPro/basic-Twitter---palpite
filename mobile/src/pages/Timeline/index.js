@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import socket from 'socket.io-client';
 import api from '../../services/api';
 
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
@@ -27,10 +28,26 @@ export default class Timeline extends Component {
   };
 
   async componentDidMount() {
+    this.subscribeToEvents();
     const response = await api.get('palpite');
 
     this.setState({palpites: response.data});
   }
+
+  subscribeToEvents = () => {
+    const io = socket('http://10.0.3.2:3000');
+
+    io.on('palpite', data => {
+      this.setState({palpites: [data, ...this.state.palpites]});
+    });
+    io.on('like', data => {
+      this.setState({
+        palpites: this.state.palpites.map(palpite =>
+          palpite._id === data._id ? data : palpite,
+        ),
+      });
+    });
+  };
 
   render() {
     return (
