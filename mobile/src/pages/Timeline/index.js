@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import api from '../../services/api';
 
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import Palpite from '../../components/Palpite';
 
 import Icon from 'react-native-vector-icons/Entypo';
 
@@ -29,17 +30,16 @@ export default class Timeline extends Component {
     const response = await api.get('palpite');
 
     this.setState({palpites: response.data});
-    console.log(response);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this.state.palpites.map(palpite => (
-          <View style={styles.text} key={palpite._id}>
-            <Text>{palpite.author}</Text>
-          </View>
-        ))}
+        <FlatList
+          data={this.state.palpites}
+          keyExtractor={palpite => palpite._id}
+          renderItem={({item}) => <Palpite palpite={item} />}
+        />
       </View>
     );
   }
