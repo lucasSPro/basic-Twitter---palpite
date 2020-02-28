@@ -39,7 +39,7 @@ export default class index extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <View style={styles.content}>
           <View style={styles.divLogo}>
             <Image source={logo} style={styles.logo} />
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
 
   input: {
     borderWidth: 1,
+    borderColor: '#6A2894',
     borderBottomColor: '#fff',
     borderRadius: 3,
     height: 44,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6A2894',
     alignSelf: 'stretch',
     marginTop: 20,
-    textDecorationColor: '#fff',
+    color: '#fff',
   },
 
   button: {
