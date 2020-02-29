@@ -9,7 +9,6 @@ import Icon from 'react-native-vector-icons/Entypo';
 
 export default class Timeline extends Component {
   static navigationOptions = ({navigation}) => ({
-    title: 'Timeline',
     headerRight: (
       <TouchableOpacity onPress={() => navigation.navigate('New')}>
         <Icon

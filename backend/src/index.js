@@ -7,7 +7,9 @@ const env = require('./env');
 
 const app = express();
 
+// eslint-disable-next-line import/order
 const server = require('http').Server(app);
+// eslint-disable-next-line import/order
 const io = require('socket.io')(server);
 
 mongoose.connect(
